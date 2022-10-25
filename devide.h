@@ -18,7 +18,6 @@ public:
     void compiler();
     void running(QString appname);
     void save();
-    void codehightlight(QTextStream *test);
 
 private slots:
     void on_actionExit_triggered();
@@ -44,6 +43,14 @@ private slots:
     void on_projectree_itemDoubleClicked(QListWidgetItem *item);
 
     void on_projectree_itemClicked(QListWidgetItem *item);
+//
+    void codehightlight(QTextStream *test);
+    void commands(QString appname, QString testinput,QString testoutput);
+    void on_actionTester_triggered();
+
+    void on_output_clicked();
+
+    void on_input_clicked();
 
 private:
     Ui::DevIde *ui;

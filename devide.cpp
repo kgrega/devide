@@ -8,6 +8,9 @@
 #include <QStringList>
 #include <QString>
 #include <QMessageBox>
+#include <QSyntaxHighlighter>
+
+
 
 
 DevIde::DevIde(QWidget *parent)
@@ -16,6 +19,8 @@ DevIde::DevIde(QWidget *parent)
 {
     ui->setupUi(this);
     opened="0";
+
+
 }
 
 DevIde::~DevIde()
@@ -62,30 +67,9 @@ void DevIde::on_actionOpen_triggered()
     opened= "1";
     tmpfile.append(openfile.fileName()+".tmp");
     openfile.copy(openfile.fileName()+".tmp");
-
-    //hightlight
-    QStringList linestrlist;
-    QString linestr;
-    if(openfile.open(QIODevice::ReadOnly | QIODevice::Text)){
-
-           //szinezés_coloring
-
-              //linestr =
-               ui->devareatext->setBackgroundRole(QPalette::HighlightedText);
-                       //setStyleSheet("color:rgb(145,25,174)");
-              //ui->devareatext->setText(filedata.readAll());
-               //ui->devareatext->setPlaceholderText(openfilestream.readLine());
-              ui->devareatext->setTextColor("color:rgb(100,25,174)");
-
-           }while(openfilestream.atEnd()){
-             linestrlist = linestr.split("#");
-             if(!linestrlist.isEmpty()){ ui->devareatext->setStyleSheet("color:rgb(32, 74, 135)");} ui->devareatext->setText(linestr);
-           //szinezés_coloring_end
-       openfile.close();
-     //  QMessageBox::information(this,"",filename);//debugolási célból,a listára nem vette fel az adott állományt.
-       }
-
-
+//tesztelésre
+//codehightlight(&openfilestream);
+    //tesztelésre_end
 }
 
 
@@ -143,28 +127,30 @@ void DevIde::compiler(){
     ui->compilerouttext->append("Running application one moment...");
     else
     ui->compilerouttext->append("Compilering failuled...");
+
     running(dir.first());
 }
 
 void DevIde :: running(QString appname){
-    QProcess comp;
-    QStringList arguments("appname");
-    arguments.append("sh");
-    arguments.append(" sh " + appname + ";pause");
 
-    QProcess :: execute("xterm",arguments);
+    QProcess *application= new QProcess();
+    QStringList arguments(appname);
+    arguments.append("");
 
-    //comp.write("pause");
-    //ui->compilerouttext->append(comp.readAllStandardError());
-    //ui->compilerouttext->append(comp.readAllStandardOutput());
-    //jelenleg tervezem hogy a lefordított programot egy terminál ablakban hajtsa végre.Egy másik példányban próbáltam hogy a IDE-re ide "konzolába" küldje
-    //a bevitelimezőbe írt "inputot" de lefagyott.
+    application->start("xterm -c",arguments);
+   application->waitForFinished(-1);
+
+ /*   connect(ui->cmd,SIGNAL(pressed()),this,SLOT(application.write("Hello light")));
+    ui->compilerouttext->append(application.readAllStandardError());
+    ui->compilerouttext->append(application.readAllStandardOutput());*/
+
 }
 
 void DevIde :: save(){
     QFile savefile;
-
+    if(ui->projectree->isRowHidden(1)){//test
     QListWidgetItem *data(ui->projectree->currentItem());
+
     if(data->isSelected()){
     if(!QFile::exists(data->text() + ".tmp")){
     savefile.setFileName(data->text() + ".tmp");
@@ -179,10 +165,16 @@ void DevIde :: save(){
     savefilestream << savedata;
     savefilestream.flush();
     savefile.close();}
+    }//teszt
 }
 void DevIde::on_actionBuild_triggered()
 {
-    if(!opened.isNull()){
+    //
+    QStringList arguments;
+    QListWidgetItem *list;
+    list = ui->projectree->currentItem();
+    //
+    if(!opened.isNull() && (!QFile:: exists(list->text() + ".tmp"))){
         QFile savefile(QFileDialog :: getSaveFileName(this,"File Save","/home/gregory","C Files (*.c,*.cpp);;Header files(*.h);;"));
         QString savedata(ui->devareatext->toPlainText());
         QTextStream savefilestream(&savefile);
@@ -190,7 +182,8 @@ void DevIde::on_actionBuild_triggered()
         savefilestream << savedata;
         savefilestream.flush();
         savefile.close();}
-        else {save();}
+        else {}
+
     compiler();
 }
 
@@ -220,9 +213,6 @@ void DevIde::on_projectree_itemClicked(QListWidgetItem *item)
         ui->devareatext->append(filestream.readAll());
         filenamestr.close();
         tmpfile=item->text() + ".tmp";}
-
-
-
 }
 
 void DevIde:: codehightlight(QTextStream *test){
@@ -244,6 +234,78 @@ void DevIde:: codehightlight(QTextStream *test){
       QTextBlock txtblock;
      // txtblock=codedata;
 
-      documents->rehighlightBlock(codedata);
+      //documents->rehighlightBlock(codedata);
       //teszteésre_end
 }
+
+
+void QSyntaxHighlighter::highlightBlock(const QString &text)
+{
+    QTextCharFormat myClassFormat;
+    myClassFormat.setFontWeight(QFont::Bold);
+    myClassFormat.setForeground(Qt::darkMagenta);
+
+    QRegularExpression expression("\\bMy[A-Za-z]+\\b");
+    QRegularExpressionMatchIterator i = expression.globalMatch(text);
+    while (i.hasNext())
+    {
+      QRegularExpressionMatch match = i.next();
+      setFormat(match.capturedStart(), match.capturedLength(), myClassFormat);
+    }
+}
+
+void DevIde::commands(QString appname, QString testinput, QString testoutput){
+
+    QProcess tester;
+    qint64 i=1,step=1;
+    QString input,output,resultstr,result;
+    QStringList argument,outputresult;
+
+    tester.setProgram(appname);
+    tester.setStandardInputFile(testinput);
+    tester.open(QIODevice:: ReadOnly | QIODevice:: Text);
+    QFile outputtestfile(testoutput);
+    QTextStream outputsream(&outputtestfile);
+    outputtestfile.open(QIODevice:: ReadOnly | QIODevice:: Text);
+    tester.waitForFinished(-1);
+    while(!outputsream.atEnd()){
+      resultstr=tester.readLine();
+      output=outputsream.readLine();
+      if(!QString::compare(resultstr,output,Qt::CaseSensitive)){
+        step++;}
+    i++;
+    ui->compilerouttext->append("Tartalom:" + resultstr);}
+
+    result.setNum((i/step));
+        ui->compilerouttext->append("Eredmény sikeressége(i):" + result.setNum((i)));
+                ui->compilerouttext->append("Eredmény sikeressége(step):" + result.setNum((step)));
+    ui->compilerouttext->append("Eredmény sikeressége:" + result);
+
+
+
+}
+
+void DevIde::on_actionTester_triggered()
+{
+    QListWidgetItem *list;
+    list = ui->projectree->currentItem();
+    QString str=list->text();
+    QStringList data=str.split('.');
+    compiler();
+    commands(data.first(), ui->inputstr->text(), ui->outputstr->text());
+}
+
+
+
+
+void DevIde::on_output_clicked()
+{
+    ui->outputstr->setText(QFileDialog::getOpenFileName(this,"Select outputfile"));
+}
+
+
+void DevIde::on_input_clicked()
+{
+    ui->inputstr->setText(QFileDialog::getOpenFileName(this,"Select inputfile"));
+}
+

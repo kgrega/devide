@@ -31,9 +31,9 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>300</y>
+      <y>340</y>
       <width>461</width>
-      <height>241</height>
+      <height>201</height>
      </rect>
     </property>
    </widget>
@@ -45,6 +45,52 @@
       <width>321</width>
       <height>241</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="outputstr">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>320</y>
+      <width>411</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="input">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>300</y>
+      <width>51</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>input</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="inputstr">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>300</y>
+      <width>411</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="output">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>320</y>
+      <width>51</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>output</string>
     </property>
    </widget>
   </widget>
@@ -82,6 +128,7 @@
      <string>Build</string>
     </property>
     <addaction name="actionBuild"/>
+    <addaction name="actionTester"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -136,6 +183,11 @@
   <action name="actionBuild">
    <property name="text">
     <string>Build</string>
+   </property>
+  </action>
+  <action name="actionTester">
+   <property name="text">
+    <string>Tester</string>
    </property>
   </action>
  </widget>
