@@ -17,8 +17,7 @@ public:
     ~DevIde();
     void compiler();
     void running(QString appname);
-    void save();
-    void codehightlight(QTextStream *test);
+    void save(QString type);
 
 private slots:
     void on_actionExit_triggered();
@@ -45,10 +44,13 @@ private slots:
 
     void on_projectree_itemClicked(QListWidgetItem *item);
 
+    void on_actionRun_triggered();
+
 private:
     Ui::DevIde *ui;
     QString opened;
     QString filecompilername;
     QString tmpfile;
+    QStringList filenames;
 };
 #endif // DEVIDE_H

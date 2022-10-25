@@ -16,26 +16,36 @@ DevIde::DevIde(QWidget *parent)
 {
     ui->setupUi(this);
     opened="0";
+
 }
 
 DevIde::~DevIde()
 {
+    on_actionExit_triggered();
     delete ui;
+
 }
 
 
 void DevIde::on_actionExit_triggered()
 {
-    compiler();
-    //QFile :: remove();
+   if(!(opened != "1" && (!ui->devareatext->isUndoRedoEnabled())))
+        save("file");
+   if(ui->projectree->currentRow())
+       save("item");
+
+   foreach(QString filename,filenames){
+       QMessageBox::information(this,"test",filename + ".tmp");
+       QFile::remove(filename + ".tmp");}
 
 
+   this->close();
 }
 
 
 void DevIde::on_actionSave_triggered()
 {
-    save();
+    save("file");
 }
 
 
@@ -54,6 +64,7 @@ void DevIde::on_actionRedo_triggered()
 void DevIde::on_actionOpen_triggered()
 {
     QFile openfile(QFileDialog ::getOpenFileName(this,"File open","/home/gregory/Asztal","C Files (*.c);;Header files(*.h);;"));
+    filenames.append(openfile.fileName());
     ui->devareatext->clear();
     QTextStream openfilestream(&openfile);
     openfile.open(QIODevice :: ReadOnly | QIODevice :: Text);
@@ -62,29 +73,7 @@ void DevIde::on_actionOpen_triggered()
     opened= "1";
     tmpfile.append(openfile.fileName()+".tmp");
     openfile.copy(openfile.fileName()+".tmp");
-
-    //hightlight
-    QStringList linestrlist;
-    QString linestr;
-    if(openfile.open(QIODevice::ReadOnly | QIODevice::Text)){
-
-           //szinezés_coloring
-
-              //linestr =
-               ui->devareatext->setBackgroundRole(QPalette::HighlightedText);
-                       //setStyleSheet("color:rgb(145,25,174)");
-              //ui->devareatext->setText(filedata.readAll());
-               //ui->devareatext->setPlaceholderText(openfilestream.readLine());
-              ui->devareatext->setTextColor("color:rgb(100,25,174)");
-
-           }while(openfilestream.atEnd()){
-             linestrlist = linestr.split("#");
-             if(!linestrlist.isEmpty()){ ui->devareatext->setStyleSheet("color:rgb(32, 74, 135)");} ui->devareatext->setText(linestr);
-           //szinezés_coloring_end
-       openfile.close();
-     //  QMessageBox::information(this,"",filename);//debugolási célból,a listára nem vette fel az adott állományt.
-       }
-
+    openfile.close();
 
 }
 
@@ -121,7 +110,10 @@ void DevIde::compiler(){
     QListWidgetItem *list;
     if(opened == "1"){
     list = ui->projectree->currentItem();
-    what = list->text();
+    if(QFile::exists(list->text()+ ".tmp")){
+        what = list->text()+ "tmp";}
+    else {
+        what = list->text();}
     arguments.append(list->text());}
     else{
 
@@ -143,63 +135,82 @@ void DevIde::compiler(){
     ui->compilerouttext->append("Running application one moment...");
     else
     ui->compilerouttext->append("Compilering failuled...");
-    running(dir.first());
+    //running(dir.first());
 }
 
 void DevIde :: running(QString appname){
-    QProcess comp;
-    QStringList arguments("appname");
-    arguments.append("sh");
-    arguments.append(" sh " + appname + ";pause");
+    QProcess run;
+    QStringList arguments(appname);
+    QString inputfile(QFileDialog::getOpenFileName(this,"WTF?",""));
+    //arguments.append();
+    arguments.append("");
+    run.setStandardInputFile(inputfile);
+    run.start(appname,arguments);
 
-    QProcess :: execute("xterm",arguments);
+/*    while(!run.waitForFinished(-1)){
+        while(run.canReadLine()){
+            ui->compilerouttext->append(run.readLine());}
+    QByteArray userstdin("test");*/
 
-    //comp.write("pause");
-    //ui->compilerouttext->append(comp.readAllStandardError());
-    //ui->compilerouttext->append(comp.readAllStandardOutput());
-    //jelenleg tervezem hogy a lefordított programot egy terminál ablakban hajtsa végre.Egy másik példányban próbáltam hogy a IDE-re ide "konzolába" küldje
-    //a bevitelimezőbe írt "inputot" de lefagyott.
+    run.waitForFinished(10000);
+    //connect(&run,SIGNAL(waitForReadyRead(-1)),&run,SLOT(write("test")));
+    //run.write(userstdin);
+    ui->compilerouttext->append(run.readAllStandardOutput());
+//}
+
 }
 
-void DevIde :: save(){
+void DevIde :: save(QString type){
     QFile savefile;
-
     QListWidgetItem *data(ui->projectree->currentItem());
-    if(data->isSelected()){
-    if(!QFile::exists(data->text() + ".tmp")){
-    savefile.setFileName(data->text() + ".tmp");
-    savefile.copy(QFileDialog :: getSaveFileName(this,"File Save","/home/gregory","C Files (*.c,*.cpp);;Header files(*.h);;"));}
-    else{
-    }
-    savefile.setFileName(QFileDialog :: getSaveFileName(this,"File Save","/home/gregory","C Files (*.c,*.cpp);;Header files(*.h);;"));
-    filecompilername=savefile.fileName();
     QString savedata(ui->devareatext->toPlainText());
     QTextStream savefilestream(&savefile);
-    savefile.open(QIODevice :: WriteOnly | QIODevice :: Text);
-    savefilestream << savedata;
-    savefilestream.flush();
-    savefile.close();}
-}
-void DevIde::on_actionBuild_triggered()
-{
-    if(!opened.isNull()){
-        QFile savefile(QFileDialog :: getSaveFileName(this,"File Save","/home/gregory","C Files (*.c,*.cpp);;Header files(*.h);;"));
-        QString savedata(ui->devareatext->toPlainText());
-        QTextStream savefilestream(&savefile);
+    if(type == "file"){
+        savefile.setFileName(QFileDialog :: getSaveFileName(this,"File Save","/home/gregory","C Files (*.c,*.cpp);;Header files(*.h);;"));
+        filecompilername=savefile.fileName();
         savefile.open(QIODevice :: WriteOnly | QIODevice :: Text);
         savefilestream << savedata;
         savefilestream.flush();
         savefile.close();}
-        else {save();}
-    compiler();
+    if(type =="item"){
+        savefile.setFileName(data->text());
+        savefile.open(QIODevice :: WriteOnly | QIODevice :: Text);
+        savefilestream << savedata;
+        savefilestream.flush();
+        savefile.close();
+
+
+   if(!QFile::exists(data->text() + ".tmp")){
+            savefile.setFileName(data->text() + ".tmp");
+            savefile.copy(QFileDialog :: getSaveFileName(this,"File Save","/home/gregory","C Files (*.c,*.cpp);;Header files(*.h);;"));}
+}
+}
+
+
+void DevIde::on_actionBuild_triggered()
+{
+    QFile savefile;
+    QListWidgetItem *data(ui->projectree->currentItem());
+    if(opened!="1"){
+        save("file");}
+
+    if(data != nullptr){
+    save("item");}
+     compiler();
 }
 
 
 void DevIde::on_projectree_itemDoubleClicked(QListWidgetItem *item)
 {
+    QFile filenamestr(item->text());
+    QTextStream filestream(&filenamestr);
+        QString savedata(ui->devareatext->toPlainText());
+        filenamestr.open(QIODevice :: WriteOnly | QIODevice :: Text);
+        filestream << savedata;
+        filestream.flush();
+        filenamestr.close();
     ui->compilerouttext->append("File saved:"+ item->text()+"\n-------------------------------------------\n compiler result:\n");
-    QFile savefile(item->text() + ".tmp");
-    savefile.copy(item->text());
+   QFile::rename(item->text(),item->text()+".tmp");
     compiler();//}
 }
 
@@ -225,25 +236,20 @@ void DevIde::on_projectree_itemClicked(QListWidgetItem *item)
 
 }
 
-void DevIde:: codehightlight(QTextStream *test){
-    //tesztelésre
-      //
-      QPalette palette;
-      palette.setBrush(QPalette::BrightText,QColor(100,200,100));
-      //palette.setBrush(QPalette::Text,QColor(100,125,144));
-//      palette.setBrush(QPalette::PlaceholderText,QColor(100,100,100));
-      palette.setBrush(QPalette::Highlight, QColor(145, 45, 120));
-      palette.setBrush(QPalette::HighlightedText,Qt::NoBrush);
-      ui->devareatext->setPalette(palette);
-/**/
 
+void DevIde::on_actionRun_triggered()
+{
+    QListWidgetItem *data(ui->projectree->currentItem());
+    if(data!=nullptr){
+    QString runprogramcode(data->text());
+    QStringList runrogramname(runprogramcode.split("."));
 
-      QSyntaxHighlighter *documents = nullptr;
-      documents->setDocument(ui->devareatext->document());
-      QStringList codedata(test->readAll());
-      QTextBlock txtblock;
-     // txtblock=codedata;
-
-      documents->rehighlightBlock(codedata);
-      //teszteésre_end
+    if(QFile::exists(runrogramname.first())){
+        ui->compilerouttext->append("Program running");
+        running(runrogramname.first());}
+    else
+        ui->compilerouttext->append("Program is missing! You are compilered that source code?");
+    }else
+        ui->compilerouttext->append("First open source-code after compilered!");
 }
+
