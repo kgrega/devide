@@ -1,0 +1,4 @@
+NAME=C
+PATH=/bin/
+PROGRAM=gcc
+ARGS=

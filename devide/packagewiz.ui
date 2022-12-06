@@ -1,0 +1,853 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Packagewiz</class>
+ <widget class="QDialog" name="Packagewiz">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>519</width>
+    <height>564</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QTabWidget" name="tabWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>511</width>
+     <height>561</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>1</number>
+   </property>
+   <widget class="QWidget" name="tab_3">
+    <attribute name="title">
+     <string>Csomag tulajdonságai</string>
+    </attribute>
+    <widget class="QGroupBox" name="groupBox_6">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>481</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Csomagnév</string>
+     </property>
+     <widget class="QLineEdit" name="deb_name">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>20</y>
+        <width>481</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_9">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>40</y>
+       <width>231</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Karbantartó neve</string>
+     </property>
+     <widget class="QLineEdit" name="debmaintainer_name">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>20</y>
+        <width>231</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_5">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>80</y>
+       <width>231</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Verzió</string>
+     </property>
+     <widget class="QLineEdit" name="deb_ver">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>20</y>
+        <width>231</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_4">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>130</y>
+       <width>481</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Típus</string>
+     </property>
+     <widget class="QLineEdit" name="deb_section">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>231</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="deb_section_list">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>20</y>
+        <width>111</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>admin</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>cli-mono</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>comm</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>database</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>debug</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>devel</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>doc</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>editors</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>education</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>electronics</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>embedded</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>fonts</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>games</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>gnome</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>gnu-r</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>gnustep</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>graphics</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>hamradio</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>haskell</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>httpd</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>interpreters</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>introspection</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>java</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>javascript</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>kde</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>kernel</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>libdevel</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>libs</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>lisp</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>localization</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>mail</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>math</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>metapackages</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>misc</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>net</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>news</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ocaml</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>oldlibs</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>otherosfs</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>perl</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>php</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>python</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ruby</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>rust</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>science</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>shells</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>sound</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>tasks</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>tex</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>text</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>utils</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>vcs</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>video</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>web</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>x11</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>xfce</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>zope</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QPushButton" name="deb_section_add">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>20</y>
+        <width>80</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Hozzáad</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_8">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>180</y>
+       <width>191</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Telepített méret</string>
+     </property>
+     <widget class="QLineEdit" name="deb_size">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>171</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_10">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>40</y>
+       <width>231</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Karbantartó e-mail címe</string>
+     </property>
+     <widget class="QLineEdit" name="debmaintainer_mail">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>20</y>
+        <width>221</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>90</y>
+       <width>131</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>CPU-arhitektúra</string>
+     </property>
+     <widget class="QComboBox" name="deb_arch">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>20</y>
+        <width>111</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string extracomment="32 bit cpu(x86)">i386</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string extracomment="64 bit cpu(x64)">amd64</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Alpha</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Arm</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Armel</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>armhf</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>arm64</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>hppa</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ia64</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>m68k</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>mips</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>mipsel</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>mips64el</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>PowerPC</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>PowerSPE</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>PPC64</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ppc64el</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>riscv64</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>s390</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>s390x</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>SH4</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>sparc64</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>x32</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>hurd-i386</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>netbsd-i386</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>netbsd-alpha</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>kfreebsd-i386</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>kfreebsd-amd64 </string>
+       </property>
+      </item>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_7">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>90</y>
+       <width>121</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Prioritás</string>
+     </property>
+     <widget class="QComboBox" name="deb_priority">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>20</y>
+        <width>111</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>optional</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>required</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>important</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>standard</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>extra</string>
+       </property>
+      </item>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_12">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>180</y>
+       <width>271</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Honlap:</string>
+     </property>
+     <widget class="QLineEdit" name="deb_website">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>251</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>https://</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>230</y>
+       <width>481</width>
+       <height>151</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Függőségek</string>
+     </property>
+     <widget class="QPlainTextEdit" name="depends_text">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>20</y>
+        <width>471</width>
+        <height>91</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="depend_edit">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>120</y>
+        <width>361</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>120</y>
+        <width>80</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Hozzáad</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_3">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>390</y>
+       <width>481</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Leírás</string>
+     </property>
+     <widget class="QPlainTextEdit" name="depend_desc">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>20</y>
+        <width>481</width>
+        <height>51</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_11">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>470</y>
+       <width>381</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Mappa útvonala</string>
+     </property>
+     <widget class="QLineEdit" name="deb_dirname">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>20</y>
+        <width>381</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QPushButton" name="createdebproject">
+     <property name="geometry">
+      <rect>
+       <x>400</x>
+       <y>490</y>
+       <width>80</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Létrehozás</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab_4">
+    <attribute name="title">
+     <string>Csomag tartalma</string>
+    </attribute>
+    <widget class="QPushButton" name="diradddebputton">
+     <property name="geometry">
+      <rect>
+       <x>319</x>
+       <y>460</y>
+       <width>181</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Mappa Hozzáadása</string>
+     </property>
+    </widget>
+    <widget class="QListWidget" name="debdirlist">
+     <property name="geometry">
+      <rect>
+       <x>5</x>
+       <y>1</y>
+       <width>501</width>
+       <height>451</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
