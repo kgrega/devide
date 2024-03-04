@@ -9,14 +9,28 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    compiler.cpp \
+    highlighter.cpp \
     main.cpp \
-    devide.cpp
+    devide.cpp \
+    newdiag.cpp \
+    packagewiz.cpp \
+    runner.cpp
 
 HEADERS += \
-    devide.h
+    compiler.h \
+    devide.h \
+    highlighter.h \
+    newdiag.h \
+    packagewiz.h \
+    runner.h
 
 FORMS += \
-    devide.ui
+    compiler.ui \
+    devide.ui \
+    newdiag.ui \
+    packagewiz.ui \
+    runner.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

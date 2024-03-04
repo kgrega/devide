@@ -1,0 +1,2 @@
+PROGRAM=kitty
+ARGUMENTS=-e

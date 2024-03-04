@@ -1,6 +1,8 @@
 #ifndef DEVIDE_H
 #define DEVIDE_H
 
+#include "newdiag.h"
+#include "qobjectdefs.h"
 #include <QMainWindow>
 #include <QListWidgetItem>
 
@@ -17,8 +19,11 @@ public:
     ~DevIde();
     void compiler();
     void running(QString appname);
-    void save();
-    void codehightlight(QTextStream *test);
+    void save(QString type);
+
+    void compilernew();
+
+    QString projecttypedesc;
 
 private slots:
     void on_actionExit_triggered();
@@ -45,10 +50,38 @@ private slots:
 
     void on_projectree_itemClicked(QListWidgetItem *item);
 
+    void on_actionRun_triggered();
+
+    void on_outputputton_clicked();
+
+    void on_inputbutton_clicked();
+
+    void commands(QString appname, QString testinput, QString testoutput);
+
+    void on_actionCode_debug_triggered();
+
+    void on_actionNew_triggered();
+    //
+    void newproject();
+    void projectopen(QString projectfilename, QString path);
+    void Debprojectopen(QString projectfilename);
+    void gitprojectopen(QString gitpath);
+    void fileopen(QString openfilename, QString path);
+    void filesave(QString oldname, QString newname,QString devareastring);
+    void on_actionRunning_triggered();
+
+    void on_actionComplirer_triggered();
+
 private:
     Ui::DevIde *ui;
     QString opened;
     QString filecompilername;
     QString tmpfile;
+    QString filenamedata;
+    QStringList filenames;
+    QString openprojecttype;
+    QString openprojectfilename;
+    QString openprojectname;
+
 };
 #endif // DEVIDE_H

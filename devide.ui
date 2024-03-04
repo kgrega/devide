@@ -31,9 +31,9 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>300</y>
+      <y>340</y>
       <width>461</width>
-      <height>241</height>
+      <height>201</height>
      </rect>
     </property>
    </widget>
@@ -45,6 +45,52 @@
       <width>321</width>
       <height>241</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="inputstr">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>300</y>
+      <width>411</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="outputstr">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>320</y>
+      <width>411</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="inputbutton">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>300</y>
+      <width>51</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Input</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="outputputton">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>320</y>
+      <width>51</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>output</string>
     </property>
    </widget>
   </widget>
@@ -61,6 +107,7 @@
     <property name="title">
      <string>File</string>
     </property>
+    <addaction name="actionNew"/>
     <addaction name="actionOpen"/>
     <addaction name="actionSave"/>
     <addaction name="actionExit"/>
@@ -82,10 +129,21 @@
      <string>Build</string>
     </property>
     <addaction name="actionBuild"/>
+    <addaction name="actionRun"/>
+    <addaction name="actionCode_debug"/>
+   </widget>
+   <widget class="QMenu" name="menuOptions">
+    <property name="title">
+     <string>Options</string>
+    </property>
+    <addaction name="actionComplirer"/>
+    <addaction name="actionRunning"/>
+    <addaction name="actionIDE"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
    <addaction name="menuBuild"/>
+   <addaction name="menuOptions"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionOpen">
@@ -136,6 +194,36 @@
   <action name="actionBuild">
    <property name="text">
     <string>Build</string>
+   </property>
+  </action>
+  <action name="actionRun">
+   <property name="text">
+    <string>Run</string>
+   </property>
+  </action>
+  <action name="actionCode_debug">
+   <property name="text">
+    <string>Code debug</string>
+   </property>
+  </action>
+  <action name="actionNew">
+   <property name="text">
+    <string>New</string>
+   </property>
+  </action>
+  <action name="actionComplirer">
+   <property name="text">
+    <string>Compiler</string>
+   </property>
+  </action>
+  <action name="actionRunning">
+   <property name="text">
+    <string>Running</string>
+   </property>
+  </action>
+  <action name="actionIDE">
+   <property name="text">
+    <string>IDE</string>
    </property>
   </action>
  </widget>
