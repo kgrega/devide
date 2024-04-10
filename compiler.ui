@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Compiler</class>
+ <widget class="QDialog" name="Compiler">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>555</width>
+    <height>603</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QPushButton" name="on_save_compiler_button">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>570</y>
+     <width>80</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Mentés</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="cancelButton">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>570</y>
+     <width>80</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Mégse</string>
+   </property>
+  </widget>
+  <widget class="QTabWidget" name="tabWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>551</width>
+     <height>561</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <widget class="QWidget" name="tab">
+    <attribute name="title">
+     <string>GCC</string>
+    </attribute>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>50</y>
+       <width>171</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Forditó opciók lehetőségek</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>150</y>
+       <width>171</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Forditónak megadott opciók</string>
+     </property>
+    </widget>
+    <widget class="QListWidget" name="warnings_select">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>70</y>
+       <width>541</width>
+       <height>81</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QListWidget" name="warnings_selected">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>170</y>
+       <width>541</width>
+       <height>81</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_6">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>310</y>
+       <width>541</width>
+       <height>101</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Alapbeállítások</string>
+     </property>
+     <widget class="QCheckBox" name="gcc_verbose_enable">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>271</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Fordítás közben információk részletezése</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="gcc_debug_enable">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>131</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Debug mód</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="gcc_all_warnings_enable">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>271</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Fordítói figyelmeztetések kikényszerítése</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="gcc_extra_warnings_enable">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>331</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Részletes fordítói figyelmeztetések kikényszerítése</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_7">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>420</y>
+       <width>541</width>
+       <height>101</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Névjegy</string>
+     </property>
+     <widget class="QTextEdit" name="gcc_about_data">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>20</y>
+        <width>541</width>
+        <height>81</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_3">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>541</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Platform támogatás</string>
+     </property>
+     <widget class="QComboBox" name="supportlist">
+      <property name="geometry">
+       <rect>
+        <x>8</x>
+        <y>20</y>
+        <width>531</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>none</string>
+       </property>
+      </item>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_8">
+     <property name="geometry">
+      <rect>
+       <x>420</x>
+       <y>250</y>
+       <width>121</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>long double-méret</string>
+     </property>
+     <widget class="QComboBox" name="double_combo">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>79</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>none</string>
+       </property>
+      </item>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_9">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>250</y>
+       <width>411</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Fordítási mód</string>
+     </property>
+     <widget class="QComboBox" name="compiler_mode">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>20</y>
+        <width>411</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>none</string>
+       </property>
+      </item>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab_2">
+    <attribute name="title">
+     <string>Debian Package</string>
+    </attribute>
+    <widget class="QGroupBox" name="groupBox_4">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>0</y>
+       <width>381</width>
+       <height>80</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Debian csomagolás</string>
+     </property>
+     <widget class="QCheckBox" name="deb_dpkg_debug_enable">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>20</y>
+        <width>231</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Debug információk megjelenítése</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="deb_dpkg_verbose_enable">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>40</y>
+        <width>231</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Információk részletezése</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_5">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>90</y>
+       <width>381</width>
+       <height>221</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Névjegy</string>
+     </property>
+     <widget class="QTextEdit" name="debdpkg_about_data">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>20</y>
+        <width>371</width>
+        <height>181</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
